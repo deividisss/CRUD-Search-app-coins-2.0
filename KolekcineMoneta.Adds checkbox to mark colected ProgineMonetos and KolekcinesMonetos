@@ -1,0 +1,10 @@
+[master 4004e41] Adds Eloquent Relationships and checkbox functionality
+ 12 files changed, 237 insertions(+), 3 deletions(-)
+ create mode 100644 app/Http/Controllers/CoinKolekcinesMonetasController.php
+ create mode 100644 app/Http/Controllers/CoinProginesMonetasController.php
+ create mode 100644 app/KolekcineMoneta.php
+ create mode 100644 app/ProgineMoneta.php
+ create mode 100644 database/factories/KolekcineMonetaFactory.php
+ create mode 100644 database/factories/ProgineMonetaFactory.php
+ create mode 100644 database/migrations/2019_03_24_160530_create_progine_monetas_table.php
+ create mode 100644 database/migrations/2019_03_24_172047_create_kolekcine_monetas_table.php
