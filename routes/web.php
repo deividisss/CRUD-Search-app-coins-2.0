@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Input;
 use App\Coin;
+use Illuminate\Filesystem\Filesystem;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +13,16 @@ use App\Coin;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+app()->singleton('App\Services\Twitter', function() {
+    return new \App\Services\Twitter('asdfasfsaf');
+});
+
+Route::get('/kaskas', function () {
+    dd(app('App\Example'));
+    return view('kaskas.index');
+});
+
 
 Route::post('/search', function() {
     $q = input::get('q');
@@ -33,9 +44,6 @@ Route::post('/search', function() {
 //     return view('welcome');
 // });
 
-Route::get('/kaskas', function () {
-    return view('kaskas.index');
-});
 
 /*
     GET /projects (index)

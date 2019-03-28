@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // use Illuminate\Http\Request;
 
 use App\Coin;
+use App\Services\Twitter;
 
 class CoinsController extends Controller
 {   
@@ -83,9 +84,11 @@ class CoinsController extends Controller
         return redirect('/coins');
     }
 
-    public function show(Coin $coin){
+    public function show(Coin $coin, Twitter $twitter){
 
+        dd($twitter);
         //$coin = Coin::findorFail($id);
+        
         return view('coins.show', compact('coin'));
     }
 }
