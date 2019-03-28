@@ -20,6 +20,8 @@ class Coin extends Model
 
         
        $this->proginesMonetas()->create($progineMoneta);
+
+       
     //    $this->proginesMonetas()->create(['description' => $description]) ;
         
     //     return ProgineMoneta::create([

@@ -12,4 +12,13 @@ class ProgineMoneta extends Model
         return $this->belongsTo(Coin::class);
     }
     
+    public function colected($colected = true){
+        $this->update(compact('colected'));
+
+    }
+
+    public function notcolected(){
+        $this->colected(false);
+    }
+
 }

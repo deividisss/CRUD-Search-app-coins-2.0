@@ -26,8 +26,11 @@
                 
                     @foreach ($coin->proginesMonetas as $progineMoneta)
 
-                            <form method="POST" action="/proginesMonetos/{{ $progineMoneta->id }}">
-                                @method('PATCH')
+                            <form method="POST" action="/colected-proginesMonetas/{{ $progineMoneta->id }}">
+                                @if ($progineMoneta->colected)
+                                    @method('DELETE')
+                                @endif
+                                {{-- @method('PATCH') --}}
                                 @csrf
 
                                 <label class="checkbox {{ $progineMoneta->colected ? 'is-colected' : ''}}" 

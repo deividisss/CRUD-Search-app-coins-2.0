@@ -53,7 +53,8 @@ Route::resource('coins','CoinsController');
 Route::post('/coins/{coin}/proginesMonetas', 'CoinProginesMonetasController@store');
 Route::patch('/proginesMonetos/{progineMoneta}', 'CoinProginesMonetasController@update');
 
-Route::patch('/kolekcinesMonetos/{kolekcineMoneta}', 'CoinKolekcinesMonetasController@update');
+Route::post('/colected-proginesMonetas/{progineMoneta}', 'ColectedProginesMonetasConntroller@store');
+Route::delete('/colected-proginesMonetas/{progineMoneta}', 'ColectedProginesMonetasConntroller@destroy');
 
 
 // Route::get('/coins', 'CoinsController@index');
