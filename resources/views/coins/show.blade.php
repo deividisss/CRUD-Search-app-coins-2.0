@@ -16,13 +16,13 @@
             
         <div class="content is-size-7" >Metai {{$coin->metai}}</div>
         
-
+        <p class="is-size-4"><strong>Proginės versijos:</strong></p>
+        <br>
+        <div class="box">
 
 
         @if ($coin->proginesMonetas->count())
-            <p class="is-size-4"><strong>Proginės versijos:</strong></p>
-            <br>
-            <div class="box">
+       
                 
                     @foreach ($coin->proginesMonetas as $progineMoneta)
 
@@ -49,32 +49,32 @@
 
                     @endforeach
 
-                    <form method="POST" action="/coins/{{$coin->id}}/proginesMonetas">
-                        @csrf
-                            <div class="field">
-                
-                                <label class="label is-size-5" for="description">Pridėti naują proginę monetą</label>
-                
-                                <div class="control">
-                                    <input type="text" class="input" name="description" placeholder="Nauja proginė moneta" required>
-                                </div>
-                
-                            </div>
-
-                            <div class="field">
-                                <div class="control">
-                                    <button type="submit" class="button is-success">Pridėti</button>
-                                </div>
-                            </div>
-                            
-                            @include('errors')
-                        
-                        </form>    
-
-
-            </div>
         @endif
 
+        <form method="POST" action="/coins/{{$coin->id}}/proginesMonetas">
+            @csrf
+                <div class="field">
+    
+                    <label class="label is-size-5" for="description">Pridėti naują proginę monetą</label>
+    
+                    <div class="control">
+                        <input type="text" class="input" name="description" placeholder="Nauja proginė moneta" required>
+                    </div>
+    
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <button type="submit" class="button is-success">Pridėti</button>
+                    </div>
+                </div>
+                
+                @include('errors')
+            
+            </form>    
+
+
+</div>
 
 
         @if ($coin->kolekcinesMonetas->count())

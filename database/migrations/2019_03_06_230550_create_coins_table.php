@@ -15,12 +15,15 @@ class CreateCoinsTable extends Migration
     {
         Schema::create('coins', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('owner_id');
             $table->string('pavadinimas', 100);
             $table->date('metai');
             $table->string('salis', 100);
             // $table->text('description');
             $table->integer('kiekis');
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

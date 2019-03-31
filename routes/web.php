@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Input;
 use App\Coin;
 use Illuminate\Filesystem\Filesystem;
+use App\Services\Twitter;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +16,10 @@ use Illuminate\Filesystem\Filesystem;
 |
 */
 
-app()->singleton('App\Services\Twitter', function() {
-    return new \App\Services\Twitter('asdfasfsaf');
-});
 
-Route::get('/kaskas', function () {
-    dd(app('App\Example'));
+
+Route::get('/kaskas', function (Twitter $twitter) {
+    dd($twitter);
     return view('kaskas.index');
 });
 
@@ -56,7 +56,8 @@ Route::post('/search', function() {
 
 */
 Route::resource('/','CoinsController');
-Route::resource('coins','CoinsController');
+Route::resource('coins','CoinsController')->middleware('can:update,coin');
+//Route::resource('coins','CoinsController');
 
 Route::post('/coins/{coin}/proginesMonetas', 'CoinProginesMonetasController@store');
 Route::patch('/proginesMonetos/{progineMoneta}', 'CoinProginesMonetasController@update');
@@ -73,3 +74,7 @@ Route::delete('/colected-proginesMonetas/{progineMoneta}', 'ColectedProginesMone
 // Route::patch('coins/{coin}','CoinsController@update');
 // Route::delete('coins/{coin}','CoinsController@destroy');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

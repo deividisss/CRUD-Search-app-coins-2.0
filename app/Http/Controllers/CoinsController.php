@@ -7,11 +7,25 @@ namespace App\Http\Controllers;
 use App\Coin;
 use App\Services\Twitter;
 
+
 class CoinsController extends Controller
-{   
+{
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
 
-        $coins = \App\Coin::orderby('id','desc')->paginate(15);
+        $coins = Coin::where('owner_id', auth()->id())->get(); //select * from coins where owner_id =4 ;
+
+        // auth()->id()//44
+        // auth()->user()//user
+        // auth()->check()// bloolean
+
+
+        // $coins = \App\Coin::orderby('id','desc')->paginate(15);//good
+
         // $coins = \App\Coin::all();
 
         //$posts = Post::orderBy('title','asc')->paginate(10);
@@ -28,7 +42,7 @@ class CoinsController extends Controller
     public function store(){
 
         $attributes = request()->validate([
-            
+
             'pavadinimas' => ['required', 'min:2'],
             'metai' => 'required',
             'salis' => ['required', 'min:3'],
@@ -36,13 +50,15 @@ class CoinsController extends Controller
 
         ]);
 
+        $attributes['owner_id'] = auth()->id();
+
         Coin::create($attributes);
 
 
         // Coin::create([
         //     'description' => request('description'),
         //     'kiekis' => request('kiekis')
-            
+
         // ]);
 
 
@@ -78,17 +94,23 @@ class CoinsController extends Controller
     }
 
     public function destroy(Coin $coin){
-        
+
         //  $coin = Coin::findorFail($id)->delete();
         $coin->delete();
         return redirect('/coins');
     }
 
-    public function show(Coin $coin, Twitter $twitter){
+    public function show(Coin $coin){
 
-        dd($twitter);
+        //  $this->authorize('update', $coin);
+
         //$coin = Coin::findorFail($id);
-        
+        // abort_unless(auth()->user()->owns($coin), 403);
+        // abort_if($coin->owner_id !== auth()->id(), 403);
+        // abort_unless(\Gate::allows('update', $coin), 403);
+
+
+
         return view('coins.show', compact('coin'));
     }
 }

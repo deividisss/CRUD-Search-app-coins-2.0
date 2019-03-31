@@ -41,7 +41,7 @@ $coins = $details;
         </ul>
     @endforeach
 
-    {{$coins->links()}}
+    {{-- {{$coins->links()}}//pagination --}}
     <div class="field" style="margin-top: 1em">
       
         <div class="controll">
