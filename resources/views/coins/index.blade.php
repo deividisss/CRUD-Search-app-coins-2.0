@@ -46,7 +46,7 @@ $coins = $details;
       
         <div class="controll">
            
-            <a href="/coins/create">
+            <a href="/create">
               <button class="button is-primary" >Pridėti monetą</button>
             </a>
          </div>

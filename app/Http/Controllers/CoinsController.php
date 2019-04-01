@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Coin;
 use App\Services\Twitter;
+use App\Mail\CoinCreated;
 
 
 class CoinsController extends Controller
@@ -18,6 +19,7 @@ class CoinsController extends Controller
     public function index(){
 
         $coins = Coin::where('owner_id', auth()->id())->get(); //select * from coins where owner_id =4 ;
+
 
         // auth()->id()//44
         // auth()->user()//user
@@ -49,10 +51,9 @@ class CoinsController extends Controller
             'kiekis' => ['required', 'numeric', 'min:0', 'not_in:0']
 
         ]);
-
         $attributes['owner_id'] = auth()->id();
 
-        Coin::create($attributes);
+        $coin = Coin::create($attributes);
 
 
         // Coin::create([
@@ -68,6 +69,10 @@ class CoinsController extends Controller
         // $coin->description = request('description');
         // $coin->kiekis = request('kiekis');
         // $coin->save();
+
+        \Mail::to('deivis124@gmail.com')->send(
+            new CoinCreated($coin)
+        );
 
         return redirect('/coins');
 

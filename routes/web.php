@@ -56,8 +56,8 @@ Route::post('/search', function() {
 
 */
 Route::resource('/','CoinsController');
-Route::resource('coins','CoinsController')->middleware('can:update,coin');
-//Route::resource('coins','CoinsController');
+// Route::resource('coins','CoinsController')->middleware('can:update,coin');
+Route::resource('coins','CoinsController');
 
 Route::post('/coins/{coin}/proginesMonetas', 'CoinProginesMonetasController@store');
 Route::patch('/proginesMonetos/{progineMoneta}', 'CoinProginesMonetasController@update');
